@@ -1,4 +1,4 @@
-# DNClassic-QoL
+# DNClassic
 
 ## TODO
 - Disclaimer
