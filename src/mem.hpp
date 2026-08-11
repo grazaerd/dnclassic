@@ -1,12 +1,9 @@
 #ifndef MEM_HPP
 #define MEM_HPP
 
-#include <algorithm>
 #include <bit>
 #include <cstdint>
-#include <charconv>
 #include <cstring>
-#include <format>
 #include <processthreadsapi.h>
 #include <Psapi.h>
 #include <string_view>
@@ -16,6 +13,7 @@
 #include <synchapi.h>
 #include <windef.h>
 #include <winbase.h>
+#include <winnt.h>
 #include <winuser.h>
 
 namespace Memory {
@@ -23,8 +21,8 @@ namespace Memory {
     inline const uintptr_t moduleBase = std::bit_cast<uintptr_t>(GetModuleHandleA(nullptr));
     inline MODULEINFO MODINF;
 
-    inline void* hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_VM_OPERATION, false, GetCurrentProcessId());
-	
+    inline void* hProcess = OpenProcess(PROCESS_ALL_ACCESS, false, GetCurrentProcessId());
+
 	template<typename T>
 	inline void PatternScan(std::string_view sig, T& address) {
 		const uint8_t* start = std::bit_cast<uint8_t*>(moduleBase);

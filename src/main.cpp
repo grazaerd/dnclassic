@@ -12,7 +12,7 @@ HMODULE ourModule = nullptr;
 void MainThread() {
 	util::HighResSleep(5000); // this is needed for classic
 	DXPORT::Initialize();
-} 
+}
 
 BOOL DllMain(HMODULE hMod, DWORD dwReason, [[maybe_unused]] LPVOID lpReserved) {
 	switch (dwReason) {
